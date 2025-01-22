@@ -4,22 +4,25 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { projects } from '@/utils/myWorkData'
+import { useRouter } from 'next/navigation'
 
-const categories = ['All', 'Web', 'Mobile', 'Design']
+const categories = ['All', 'ReactJS', 'NextJS', 'MERN']
 
-const projects = [
-    { id: 1, title: 'E-commerce Platform', category: 'Web', image: '/assets/bg1.jpg' },
-    { id: 2, title: 'Fitness Tracking App', category: 'Mobile', image: '/assets/bg2.jpg' },
-    { id: 3, title: 'Corporate Branding', category: 'Design', image: '/assets/bg3.jpg' },
-    { id: 4, title: 'Social Media Dashboard', category: 'Web', image: '/assets/bg1.jpg' },
-    { id: 5, title: 'Restaurant Booking App', category: 'Mobile', image: '/assets/bg2.jpg' },
-    { id: 6, title: 'Product Packaging', category: 'Design', image: '/assets/bg3.jpg' },
-  ]
+// const projects = [
+//     { id: 1, title: 'E-commerce Platform', category: 'Web', image: '/assets/bg1.jpg' },
+//     { id: 2, title: 'Fitness Tracking App', category: 'Mobile', image: '/assets/bg2.jpg' },
+//     { id: 3, title: 'Corporate Branding', category: 'Design', image: '/assets/bg3.jpg' },
+//     { id: 4, title: 'Social Media Dashboard', category: 'Web', image: '/assets/bg1.jpg' },
+//     { id: 5, title: 'Restaurant Booking App', category: 'Mobile', image: '/assets/bg2.jpg' },
+//     { id: 6, title: 'Product Packaging', category: 'Design', image: '/assets/bg3.jpg' },
+//   ]
 
 export default function WorkSection() {
   const [activeCategory, setActiveCategory] = useState('All')
   const controls = useAnimation()
   const sectionRef = useRef(null)
+  const router = useRouter()
 
   const filteredProjects = projects.filter(
     project => activeCategory === 'All' || project.category === activeCategory
@@ -116,18 +119,19 @@ export default function WorkSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-lg overflow-hidden shadow-lg"
+                className="bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer"
+                onClick={() => router.push(project?.link)}
               >
                 <Image
-                  src={project.image}
-                  alt={project.title}
+                  src={project?.image}
+                  alt={project?.title}
                   width={400}
                   height={300}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-600">{project.category}</p>
+                  <h3 className="text-xl font-semibold mb-2">{project?.title}</h3>
+                  <p className="text-gray-600">{project?.category}</p>
                 </div>
               </motion.div>
             ))}
