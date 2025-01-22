@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { projects } from '@/utils/myWorkData'
-import { useRouter } from 'next/navigation'
 
 const categories = ['All', 'ReactJS', 'NextJS', 'MERN']
 
@@ -22,7 +21,6 @@ export default function WorkSection() {
   const [activeCategory, setActiveCategory] = useState('All')
   const controls = useAnimation()
   const sectionRef = useRef(null)
-  const router = useRouter()
 
   const filteredProjects = projects.filter(
     project => activeCategory === 'All' || project.category === activeCategory
@@ -120,7 +118,11 @@ export default function WorkSection() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5 }}
                 className="bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer"
-                onClick={() => router.push(project?.link)}
+                onClick={() => {
+                  if(project?.link){
+                    window.open(project?.link, "_blank")
+                  }
+                }}
               >
                 <Image
                   src={project?.image}
