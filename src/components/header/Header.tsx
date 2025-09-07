@@ -45,6 +45,7 @@ export default function Header() {
                 alt='web-logo'
                 width={70}
                 height={70}
+                className='w-[55px] sm:w-[70px] h-[55px] sm:h-[70px]'
               />
             </motion.div>
             <h1 className="text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
