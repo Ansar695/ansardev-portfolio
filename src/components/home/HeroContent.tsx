@@ -4,6 +4,23 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
+import { myStaticData } from "@/utils/MyStaticData";
+import Link from "next/link";
+
+export const socialsLink = [
+    {
+      icon: Linkedin,
+      link: 'https://www.linkedin.com/in/ansar-saeed-sial-a02019244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+    },
+    {
+      icon: Github,
+      link: 'https://github.com/Ansar695'
+    },
+    {
+      icon: Mail,
+      link: 'mailto:ansarsaeed988@gmail.com'
+    }
+  ]
 
 export default function HeroContent() {
   return (
@@ -36,7 +53,7 @@ export default function HeroContent() {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="text-xl mb-6 text-indigo-300"
         >
-          MERN Stack Developer | 3 Years Experience
+          MERN Stack Developer | 4 Years Experience
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -44,13 +61,7 @@ export default function HeroContent() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="text-gray-300 mb-8 max-w-[1000px]"
         >
-          I’m a passionate MERN Stack Developer with over 3 years of hands-on
-          experience in building scalable, efficient, and user-friendly web
-          applications. I thrive in collaborative environments, where I work
-          closely with teams to deliver high-quality solutions that meet tight
-          deadlines. Whether leading projects or contributing as a team member,
-          I’m dedicated to turning innovative ideas into seamless digital
-          experiences. Let’s work together to bring your vision to life!
+          {myStaticData.profile}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,12 +69,7 @@ export default function HeroContent() {
           transition={{ delay: 0.6, duration: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
         >
-          <Button
-            size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-white"
-          >
-            Explore My Work
-          </Button>
+          <Link href="/assets/my-portfolio.pdf" download target="_blank">
           <Button
             size="lg"
             variant="outline"
@@ -71,6 +77,7 @@ export default function HeroContent() {
           >
             Download Resume
           </Button>
+          </Link>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -78,7 +85,7 @@ export default function HeroContent() {
           transition={{ delay: 0.7, duration: 0.5 }}
           className="flex justify-center lg:justify-start mt-8 gap-6"
         >
-          {[Github, Linkedin, Mail].map((Icon, index) => (
+          {socialsLink.map((Icon, index) => (
             <motion.a
               key={index}
               href="#"
@@ -86,7 +93,9 @@ export default function HeroContent() {
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Icon size={24} />
+              <Link href={Icon?.link} target="_blank">
+                <Icon.icon size={24} />
+              </Link>
             </motion.a>
           ))}
         </motion.div>
@@ -111,11 +120,11 @@ export default function HeroContent() {
             className="rounded-full overflow-hidden border-4 border-purple-500 shadow-2xl"
           >
             <Image
-              src="/assets/me3.jpeg"
+              src="/assets/me33.png"
               alt="Ansar Saeed"
-              width={400}
-              height={400}
-              className="w-[400px] h-[500px] rounded-full object-cover"
+              width={450}
+              height={450}
+              className="w-[350px] h-[400px] rounded-full object-cover"
             />
           </motion.div>
           <motion.div

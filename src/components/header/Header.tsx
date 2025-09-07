@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CircleUser, Code, Layers, Menu, MonitorCog, Send, X } from 'lucide-react'
+import Image from 'next/image';
 import { useState } from 'react';
 
 const menus = [
@@ -29,26 +30,12 @@ export default function Header() {
                 repeatType: "reverse"
               }}
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 100 100" 
-                className="w-12 h-12"
-              >
-                <defs>
-                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#6366f1" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#a855f7" stopOpacity="1" />
-                  </linearGradient>
-                </defs>
-                <path 
-                  d="M20 50 Q50 20, 80 50 T50 80 Q20 50, 50 20" 
-                  fill="none" 
-                  stroke="url(#logoGradient)" 
-                  strokeWidth="6" 
-                  strokeLinecap="round"
-                />
-                <circle cx="50" cy="50" r="5" fill="url(#logoGradient)" />
-              </svg>
+              <Image 
+                src='/logo.svg'
+                alt='web-logo'
+                width={70}
+                height={70}
+              />
             </motion.div>
             <h1 className="text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
               Ansar Saeed

@@ -52,7 +52,7 @@ export default function MultiCardTestimonials() {
               animate={{ x: `${-currentIndex * 33.33}%` }}
             >
               {testimonialData.map((testimonial:any, index:number) => (
-                <div key={index} className="w-1/3 flex-shrink-0 px-4">
+                <div key={index} className=" w-full md:w-1/3 flex-shrink-0 px-4">
                   <TestimonialCard {...testimonial} />
                 </div>
               ))}

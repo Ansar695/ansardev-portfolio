@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import React from 'react';
@@ -9,7 +10,7 @@ import {
   Cloud 
 } from 'lucide-react';
 
-const ServiceCard = ({ icon: Icon, title, description }) => (
+const ServiceCard = ({ icon: Icon, title, description }: any) => (
   <motion.div
     whileHover={{ 
       scale: 1.05,
@@ -26,16 +27,17 @@ const ServiceCard = ({ icon: Icon, title, description }) => (
       </div>
       <h3 className="text-xl font-semibold text-white">{title}</h3>
     </div>
-    <p className="text-gray-400 text-sm leading-relaxed">
+    <p className="text-gray-400 text-sm leading-relaxed mb-4">
       {description}
     </p>
-    <motion.button
+    <motion.a
       whileHover={{ scale: 1.1 }}
+       href={`#contact`}
       whileTap={{ scale: 0.9 }}
-      className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-purple-700 transition-colors"
+      className=" bg-purple-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-purple-700 transition-colors"
     >
-      Learn More
-    </motion.button>
+      Reach Now
+    </motion.a>
   </motion.div>
 );
 

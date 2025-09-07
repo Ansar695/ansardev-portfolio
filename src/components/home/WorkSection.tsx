@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client'
+"use client";
 
-import { useState, useEffect, useRef } from 'react'
-import { motion, useAnimation, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
-import { projects } from '@/utils/myWorkData'
+import { useState, useEffect, useRef } from "react";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { projects } from "@/utils/myWorkData";
+import { Button } from "../ui/button";
 
-const categories = ['All', 'ReactJS', 'NextJS', 'MERN']
+const categories = ["All", "ReactJS", "NextJS", "MERN"];
 
 // const projects = [
 //     { id: 1, title: 'E-commerce Platform', category: 'Web', image: '/assets/bg1.jpg' },
@@ -18,34 +19,42 @@ const categories = ['All', 'ReactJS', 'NextJS', 'MERN']
 //   ]
 
 export default function WorkSection() {
-  const [activeCategory, setActiveCategory] = useState('All')
-  const controls = useAnimation()
-  const sectionRef = useRef(null)
+  const [activeCategory, setActiveCategory] = useState("All");
+  const controls = useAnimation();
+  const sectionRef = useRef(null);
+  const [loadAll, setLoadAll] = useState(false);
 
-  const filteredProjects = projects.filter(
-    project => activeCategory === 'All' || project.category === activeCategory
-  )
+  const filteredProjects = projects
+    .slice(0, loadAll ? 50 : 9)
+    .filter(
+      (project) =>
+        activeCategory === "All" || project.category === activeCategory
+    );
+
+  const paginationHandler = () => {
+    setLoadAll(true);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          controls.start('visible')
+          controls.start("visible");
         }
       },
       { threshold: 0.1 }
-    )
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+        observer.unobserve(sectionRef.current);
       }
-    }
-  }, [controls])
+    };
+  }, [controls]);
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -55,37 +64,37 @@ export default function WorkSection() {
       transition: {
         duration: 0.5,
         when: "beforeChildren",
-        staggerChildren: 0.1
-      }
-    }
-  }
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
-  }
+      transition: { duration: 0.5 },
+    },
+  };
 
   return (
-    <motion.section 
+    <motion.section
       ref={sectionRef}
       className="py-20 bg-gray-800"
       initial="hidden"
       animate={controls}
       variants={sectionVariants}
-      id='projects'
+      id="projects"
     >
       <div className="container mx-auto px-4 xl:px-[100px]">
-        <motion.h2 
+        <motion.h2
           variants={itemVariants}
           className="text-4xl font-bold mb-12 text-center text-white"
         >
           My Work
         </motion.h2>
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="flex justify-center mb-8"
         >
@@ -94,7 +103,9 @@ export default function WorkSection() {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`mx-2 px-4 py-2 rounded-full ${
-                activeCategory === category ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-800'
+                activeCategory === category
+                  ? "bg-purple-600 text-white"
+                  : "bg-gray-200 text-gray-800"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -104,7 +115,7 @@ export default function WorkSection() {
             </motion.button>
           ))}
         </motion.div>
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={itemVariants}
         >
@@ -119,8 +130,8 @@ export default function WorkSection() {
                 transition={{ duration: 0.5 }}
                 className="bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer"
                 onClick={() => {
-                  if(project?.link){
-                    window.open(project?.link, "_blank")
+                  if (project?.link) {
+                    window.open(project?.link, "_blank");
                   }
                 }}
               >
@@ -132,7 +143,9 @@ export default function WorkSection() {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{project?.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {project?.title}
+                  </h3>
                   <p className="text-gray-600">{project?.category}</p>
                 </div>
               </motion.div>
@@ -140,7 +153,16 @@ export default function WorkSection() {
           </AnimatePresence>
         </motion.div>
       </div>
+      {!loadAll && <div className="w-full flex items-center justify-center mt-8">
+        <Button
+          size="lg"
+          variant="outline"
+          className="w-full max-w-[280px] mx-auto h-12 bg-transparent border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white"
+          onClick={paginationHandler}
+        >
+          Load All
+        </Button>
+      </div>}
     </motion.section>
-  )
+  );
 }
-

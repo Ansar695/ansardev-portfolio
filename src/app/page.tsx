@@ -3,6 +3,7 @@ import AllSkillsSection from '@/components/home/AllSkills';
 import AnimatedStatsSection from '@/components/home/AnimatedCounter';
 import ContactSection from '@/components/home/ContactMe';
 import ExperienceEducationSection from '@/components/home/ExpAndEdu';
+import FloatingButton from '@/components/home/FloatingButton';
 import Footer from '@/components/home/Footer';
 import HeroSection from '@/components/home/Hero';
 import ServicesSection from '@/components/home/Services';
@@ -13,17 +14,14 @@ import React from 'react';
 export default function Home() {
 
   return (
-    <main>
+    <main className='relative'>
+      <FloatingButton />
       <HeroSection />
       <AnimatedStatsSection />
-      {/* <AboutMePage /> */}
-      {/* <SkillsSection /> */}
       <ServicesSection />
       <WorkSection />
       <ExperienceEducationSection />
-      {/* <TestimonialsSection /> */}
       <AttractiveClientTestimonials />
-      {/* <ContactSection /> */}
       <ContactSection />
       <AllSkillsSection />
       <Footer />

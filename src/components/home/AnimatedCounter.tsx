@@ -6,10 +6,10 @@ import { useInView } from 'react-intersection-observer'
 import { useState, useEffect } from 'react'
 
 const stats = [
-  { id: 1, name: 'Projects Completed', value: 500 },
-  { id: 2, name: 'Happy Clients', value: 250 },
-  { id: 3, name: 'Years of Experience', value: 10 },
-  { id: 4, name: 'Awards Won', value: 30 },
+  { id: 1, name: 'Projects Completed', value: 50 },
+  { id: 2, name: 'Happy Clients', value: 20 },
+  { id: 3, name: 'Years of Experience', value: 4 },
+  { id: 4, name: 'Awards Won', value: 5 },
 ]
 
 const AnimatedCounter = ({ value, duration = 2 }: any) => {
@@ -48,14 +48,6 @@ export default function AnimatedStatsSection() {
           transition={{ duration: 0.8 }}
           className="mx-auto max-w-2xl lg:max-w-none"
         >
-          {/* <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Trusted by creators worldwide
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-purple-200">
-              Our track record speaks for itself. Here is a glimpse of our achievements and the trust our clients place in us.
-            </p>
-          </div> */}
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat) => (
               <motion.div
