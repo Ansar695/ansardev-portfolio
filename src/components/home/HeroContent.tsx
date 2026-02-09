@@ -35,7 +35,7 @@ export default function HeroContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-2xl font-semibold mb-2 text-purple-300"
+          className="text-2xl font-semibold mb-2 text-purple-400"
         >
           Hello, {"I'm"}
         </motion.h2>
@@ -43,7 +43,7 @@ export default function HeroContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+          className="text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-rose-400"
         >
           Ansar Saeed
         </motion.h1>
@@ -51,7 +51,7 @@ export default function HeroContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-xl mb-6 text-indigo-300"
+          className="text-xl mb-6 text-pink-300"
         >
           MERN Stack Developer | 4 Years Experience
         </motion.p>
@@ -73,7 +73,7 @@ export default function HeroContent() {
           <Button
             size="lg"
             variant="outline"
-            className="border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white"
+            className="border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white font-semibold transition-all duration-300"
           >
             Download Resume
           </Button>
@@ -89,7 +89,7 @@ export default function HeroContent() {
             <motion.a
               key={index}
               href="#"
-              className="text-gray-400 hover:text-purple-400 transition-colors"
+              className="text-gray-400 hover:text-pink-500 transition-colors"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -100,43 +100,16 @@ export default function HeroContent() {
           ))}
         </motion.div>
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="flex justify-center relative"
-      >
-        <div className="relative">
-          <motion.div
-            animate={{
-              rotate: [0, 5, 0, -5, 0],
-              scale: [1, 1.05, 1, 1.05, 1],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            className="rounded-full overflow-hidden border-4 border-purple-500 shadow-2xl"
-          >
+      <div>
+        
             <Image
-              src="/assets/me33.png"
+              src="/me.png"
               alt="Ansar Saeed"
               width={450}
               height={450}
-              className="w-[350px] h-[400px] rounded-full object-cover"
+              className="w-[350px] h-[400px] rounded-xl object-cover"
             />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            className="absolute -top-4 -right-4 bg-pink-600 text-white p-3 rounded-full shadow-lg"
-          >
-            <code className="text-sm font-bold">{"{ }"}</code>
-          </motion.div>
-        </div>
-      </motion.div>
+      </div>
     </>
   );
 }

@@ -53,12 +53,15 @@ export const socialsLink = [
 export default function AnimatedFooter() {
   return (
     <motion.footer
-      className="bg-gradient-to-r from-purple-900 to-indigo-900 text-white py-12 xl:px-[100px]"
+      className="bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 text-white py-12 xl:px-[100px] relative overflow-hidden border-t border-slate-700/50"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
       variants={footerVariants}
     >
+      {/* Background accent glows */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl opacity-20 -z-10"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl opacity-20 -z-10"></div>
       <div className="container mx-auto px-4">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -111,7 +114,7 @@ export default function AnimatedFooter() {
                 <motion.a
                   key={index}
                   href="#"
-                  className="text-gray-400 hover:text-purple-400 transition-colors"
+                  className="text-gray-400 hover:text-pink-500 transition-colors"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -124,10 +127,10 @@ export default function AnimatedFooter() {
           </div>
         </motion.div>
         <motion.div
-          className="mt-8 pt-8 border-t border-purple-700 text-center"
+          className="mt-8 pt-8 border-t border-slate-700/50 text-center"
           variants={childVariants}
         >
-          <p className="text-gray-300">
+          <p className="text-gray-400">
             © {new Date().getFullYear()} Ansar Saeed. All rights reserved.
           </p>
         </motion.div>
