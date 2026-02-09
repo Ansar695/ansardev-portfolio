@@ -2,8 +2,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // type Data = { ok: boolean; message?: string; error?: string };
 
 // export default async function handler(
@@ -63,6 +61,11 @@ if (req.method !== "POST") {
   }
 
   try {
+    if (!process.env.RESEND_API_KEY) {
+      console.warn('RESEND_API_KEY not configured - skipping email send');
+      return NextResponse.json({ ok: true, message: 'Email service not configured' });
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const response = await resend.emails.send({
       from: process.env.FROM_EMAIL || "no-reply@example.com",
       to: process.env.TO_EMAIL || "",

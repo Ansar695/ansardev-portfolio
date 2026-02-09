@@ -54,8 +54,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 type Data = { ok: boolean; message?: string; error?: string };
 
 // Professional email template function
@@ -176,7 +174,11 @@ export default async function handler(
 
   try {
     const emailSubject = subject || `New Contact Form Submission from ${name}`;
-    
+    if (!process.env.RESEND_API_KEY) {
+      console.warn('RESEND_API_KEY not configured - skipping email send');
+      return res.status(200).json({ ok: true, message: 'Email service not configured' });
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: process.env.FROM_EMAIL || "no-reply@example.com",
       to: process.env.TO_EMAIL || "",
