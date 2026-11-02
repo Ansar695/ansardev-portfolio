@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --background: #f8fafc; /* soft light background */
+    --foreground: #0f172a; /* deep slate text color */
+    --primary: #06b6d4; /* bright cyan/teal */
+    --primary-foreground: #ffffff;
+    --accent: #7c3aed; /* subtle complementary accent */
+    --bg-dark: #0b1020;
+    --fg-dark: #e6eef8;
+  }
+
+  .dark {
+    --background: var(--bg-dark);
+    --foreground: var(--fg-dark);
+    --primary: #0891b2; /* slightly deeper for dark mode */
+    --primary-foreground: #0b1020;
+    --accent: #6d28d9;
+  }
+
+  :root {
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* subtle entrance animations for sections */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 600ms cubic-bezier(.2,.9,.2,1) both;
+  }
+
+  @keyframes glowPulse {
+    0% { opacity: 0.18; transform: scale(0.98); }
+    50% { opacity: 0.28; transform: scale(1.02); }
+    100% { opacity: 0.18; transform: scale(0.98); }
+  }
+
+  .glow-pulse { animation: glowPulse 6s ease-in-out infinite; }
+
+  /* Scrollbar (light + dark) */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.25); border-radius: 9999px; }
+
+  /* Firefox */
+  * { scrollbar-width: thin; scrollbar-color: rgba(6,182,212,0.25) transparent; }
+}
+
+/* Global element colors using variables */
+body { background: var(--background); color: var(--foreground); }
+
+/* Utility helper for primary-bg buttons using CSS variable */
+.btn-primary { background: var(--primary); color: var(--primary-foreground); }
+
